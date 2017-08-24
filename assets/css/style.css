@@ -10,6 +10,10 @@ nav a:hover {
 input {
   padding: 20px;
   padding-bottom: 5px;
+  margin-bottom: 10px;
+  shape-outside: polygon();
+  background-color: #eee;
+  box-shadow: 7px 7px 5px #888888;
 }
 .navbar {
   border-bottom-style: solid;
@@ -17,13 +21,17 @@ input {
   border-bottom-width: 3px;
 }
 .container-fluid {
-  padding-top: 40px;
+  padding-top: 35px;
 }
 .card {
   padding: 2px;
-  padding-top: 5px;
+  padding-top: 10px;
   shape-outside: polygon();
   background-color: #eee;
+  box-shadow: 7px 7px 5px #888888;
+}
+#add_gif {
+  shape-outside: polygon();
   box-shadow: 7px 7px 5px #888888;
 }
 .card-columns {

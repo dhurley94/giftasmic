@@ -30,7 +30,7 @@ $(document).ready(function() {
     * which each img will be displayed
     */
     buildCard: function(url, posted, rating) {
-      return $("<div class='card' style='width: 20rem;'><a href="' + url + '"><img class='card-img-top img-fluid' src='" + url + "' alt='giphy-image'><div class='card-body'><p class='card-text'>" + "Posted on <i>" + posted +  "</i><hr> Rating: <b>" + rating + "</b></p></div></div>");
+      return $("<div class='card' style='width: 20rem;'><img class='card-img-top img-fluid' src='" + url + "' alt='giphy-image'><div class='card-body'><p class='card-text'>" + "Posted on <i>" + posted +  "</i><hr> Rating: <b>" + rating + "</b></p></div></div>");
     },
 
     displayCards: function(gifArray) {
@@ -67,7 +67,7 @@ $(document).ready(function() {
     }
   });
 
-  $(".nav-link").on('click', function() {
+  $(".nav-link").on('click', function(e) {
     console.log($(this).text());
     var selection = $(this).text();
     $("#card-holder").empty();
