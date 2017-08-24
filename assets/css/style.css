@@ -1,19 +1,30 @@
-
+* {
+  font-family: 'Mukta Mahee', sans-serif;
+}
+nav a {
+  color: white;
+}
+nav a:hover {
+  color: gray;
+}
 input {
   padding: 20px;
+  padding-bottom: 5px;
 }
 .navbar {
   border-bottom-style: solid;
   border-bottom-color: black;
   border-bottom-width: 3px;
-
 }
 .container-fluid {
-  padding-top: 50px;
+  padding-top: 40px;
 }
 .card {
   padding: 2px;
+  padding-top: 5px;
   shape-outside: polygon();
+  background-color: #eee;
+  box-shadow: 7px 7px 5px #888888;
 }
 .card-columns {
   @include media-breakpoint-only(sm) {
