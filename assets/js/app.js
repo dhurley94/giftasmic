@@ -20,6 +20,7 @@ $(document).ready(function() {
         dataType: 'json'
       })
       .done(function(data) {
+        console.log(data);
         giphyGetter.displayCards(data);
       });
       // TODO add a loading animation?
@@ -65,7 +66,8 @@ $(document).ready(function() {
     }
   });
 
-  $(".nav-link").on('click', function() {
+  $(document).on('click',".nav-link", function() {
+  //$(".nav-link").on('click', function() {
     var selection = $(this).text();
     console.log(selection);
     $("#card-holder").empty();
