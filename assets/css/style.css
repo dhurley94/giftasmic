@@ -1,3 +1,10 @@
+.navbar {
+  border-bottom-style: solid;
+  border-bottom-color: black;
+  border-bottom-width: 3px;
+
+}
+
 .container {
   padding-top: 30px;
 }

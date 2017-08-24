@@ -17,19 +17,30 @@ $(document).ready(function() {
         dataType: 'json'
       })
       .done(function(data) {
-        console.log(data);
+        giphyGetter.displayCards(data);
       });
+      console.log("waiting on data.")
     },
 
-    buildCard: function(url, rating) {
-      var defaultCard = $("<div class='card' style='width: 20rem;'><img class='card-img-top' src='" + this.url + "' alt='giphy-image'><div class='card-body'><p class='card-text'>" + this.rating + "</p></div></div>");
-      return defaultCard;
+    buildCard: function(url, posted, rating) {
+      return $("<div class='card' style='width: 20rem;'><img class='card-img-top' src='" + url + "' alt='giphy-image'><div class='card-body'><p class='card-text'>" + posted +  " Rating: " + rating + "</p></div></div>");
+    },
+
+    displayCards: function(gifArray) {
+      $("#card-holder").empty();
+      for (var i = 0; i < gifArray.data.length; i++) {
+        var urL = gifArray.data[i].images.downsized_medium.url;
+        var opUpload = gifArray.data[i].import_datetime;
+        var rating = gifArray.data[i].rating;
+        $("card-holder").append(giphyGetter.buildCard(urL, opUpload, rating));
+        console.log("Apended giphy #" + i);
+      }
     },
 
     buildNav: function() {
       $("#addMore").empty();
       for (var i = 0; i < giphyGetter.userInput.length; i++){
-        $("#addMore").fadeIn(1500).prepend("<li class='nav-item'><a class='nav-link' value='" + giphyGetter.userInput[i] + "' href='#'>" + giphyGetter.userInput[i] + "</a></li>");
+        $("#addMore").fadeIn(1500).prepend("<li class='nav-item'><a class='nav-link' value='" + giphyGetter.userInput[i] + "' name='" + giphyGetter.userInput[i] + "' href='#'>" + giphyGetter.userInput[i] + "</a></li>");
       }
     }
   }
@@ -40,7 +51,6 @@ $(document).ready(function() {
     if ($.inArray($("input[type=text][name=input_gif]").val(), giphyGetter.userInput) == -1) {
       var tmp = $("input[type=text][name=input_gif]").val();
       giphyGetter.userInput.push(tmp);
-      //$("#addMore").prepend("<li class='nav-item'><a class='nav-link' value='" + tmp + "' href='#'>" + tmp + "</a></li>");
       giphyGetter.buildNav();
       console.log(giphyGetter.userInput)
     } else if ($("input[type=text][name=input_gif]").val() == '') {
@@ -50,8 +60,10 @@ $(document).ready(function() {
     }
   });
 
-  $(".nav-link").on('click', function() {
-    console.log($(".nav-link").html());
+  $(".nav-link").on('click', function(e) {
+    console.log($(this).text());
+    var selection = $(this).text();
+    giphyGetter.gifQuery(selection);
   });
 
 });
