@@ -1,5 +1,6 @@
-* {
+html {
   font-family: 'Mukta Mahee', sans-serif;
+  font-weight: 600;
 }
 nav a {
   color: white;
@@ -7,13 +8,20 @@ nav a {
 nav a:hover {
   color: gray;
 }
+ul li {
+  display: block;
+}
+form {
+  margin: 0 0 20px 0;
+  shape-outside: polygon();
+  background-color: #eee;
+  box-shadow: 2px 2px 1px #888888;
+  border-radius: 7px;
+}
 input {
   padding: 20px;
   padding-bottom: 5px;
   margin-bottom: 10px;
-  shape-outside: polygon();
-  background-color: #eee;
-  box-shadow: 7px 7px 5px #888888;
 }
 .navbar {
   border-bottom-style: solid;
@@ -26,14 +34,10 @@ input {
 .card {
   padding: 2px;
   padding-top: 10px;
-  shape-outside: polygon();
-  background-color: #eee;
-  box-shadow: 7px 7px 5px #888888;
+  background-color: #ddd;
+  box-shadow: 2px 2px 1px #888888;
 }
-#add_gif {
-  shape-outside: polygon();
-  box-shadow: 7px 7px 5px #888888;
-}
+
 .card-columns {
   @include media-breakpoint-only(sm) {
     column-count: 2;

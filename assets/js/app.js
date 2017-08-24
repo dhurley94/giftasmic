@@ -58,18 +58,16 @@ $(document).ready(function() {
   $("#add_gif").on('click', function() {
     if ($.inArray($("input[type=text][name=input_gif]").val(), giphyGetter.userInput) == -1) {
       var tmp = $("input[type=text][name=input_gif]").val();
-      giphyGetter.userInput.push(tmp);
+      giphyGetter.userInput.push(tmp.toLowerCase());
       giphyGetter.buildNav();
-    } else if ($("input[type=text][name=input_gif]").val() == '') {
-      $("input[type=text][name=input_gif]").effect("pulsate", "fast");
     } else {
       $("input[type=text][name=input_gif]").effect("pulsate", "fast");
     }
   });
 
-  $(".nav-link").on('click', function(e) {
-    console.log($(this).text());
+  $(".nav-link").on('click', function() {
     var selection = $(this).text();
+    console.log(selection);
     $("#card-holder").empty();
     giphyGetter.gifQuery(selection);
   });
