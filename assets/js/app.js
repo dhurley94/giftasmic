@@ -22,6 +22,9 @@ $(document).ready(function() {
       .done(function(data) {
         console.log(data);
         giphyGetter.displayCards(data);
+      })
+      .fail(function(){
+        $("card-holder").text("<div class='danger'>Failed to get data from Giphy.</div>");
       });
       // TODO add a loading animation?
     },
@@ -56,18 +59,19 @@ $(document).ready(function() {
 
   giphyGetter.buildNav();
 
-  $("#add_gif").on('click', function() {
+  $("#add_gif").on('click', function(event) {
+    event.preventDefault();
     if ($.inArray($("input[type=text][name=input_gif]").val(), giphyGetter.userInput) == -1) {
       var tmp = $("input[type=text][name=input_gif]").val();
       giphyGetter.userInput.push(tmp.toLowerCase());
       giphyGetter.buildNav();
+      giphyGetter.gifQuery(tmp.toLowerCase());
     } else {
       $("input[type=text][name=input_gif]").effect("pulsate", "fast");
     }
   });
 
   $(document).on('click',".nav-link", function() {
-  //$(".nav-link").on('click', function() {
     var selection = $(this).text();
     console.log(selection);
     $("#card-holder").empty();
