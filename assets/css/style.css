@@ -10,6 +10,8 @@ nav a:hover {
 }
 ul li {
   display: block;
+  text-align: center;
+  border-bottom: solid 2px white;
 }
 form {
   margin: 0 0 20px 0;
