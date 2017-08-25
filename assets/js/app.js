@@ -76,7 +76,7 @@ $(document).ready(function() {
         var userInputData = $("input[type=text][name=input_gif]").val().trim().toLowerCase();
         if (userInputData == "") {
             $("input[type=text][name=input_gif]").effect("pulsate", "fast");
-        } else if ($.inArray(userInputData, giphyGetter.userInput) == -1) {
+        } else if ($.inArray(userInputData.replace(/ /g, '+'), giphyGetter.userInput) == -1) {
             userInputData = userInputData.replace(/ /g, '+');
             giphyGetter.userInput.push(userInputData);
             giphyGetter.buildNav();
