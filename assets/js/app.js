@@ -101,6 +101,7 @@ $(document).ready(function() {
         } else {
             $(".input-group").effect("bounce", "fast");
         }
+        $("input[type=text][name=input_gif]").val("");
     }
     /**
      * changes api call
