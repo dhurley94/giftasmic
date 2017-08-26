@@ -92,14 +92,14 @@ $(document).ready(function() {
     function newGiphyReq() {
         var userInputData = $("input[type=text][name=input_gif]").val().trim().toLowerCase();
         if (userInputData == "") {
-            $("input[type=text][name=input_gif]").effect("pulsate", "fast");
+            $(".input-group").effect("bounce", "fast");
         } else if ($.inArray(userInputData.replace(/ /g, '+'), giphyGetter.userInput) == -1) {
             userInputData = userInputData.replace(/ /g, '+');
             giphyGetter.userInput.push(userInputData);
             giphyGetter.buildNav();
             giphyGetter.gifQuery(userInputData);
         } else {
-            $("input[type=text][name=input_gif]").effect("pulsate", "fast");
+            $(".input-group").effect("bounce", "fast");
         }
     }
     /**
