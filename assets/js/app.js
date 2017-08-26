@@ -20,6 +20,7 @@ $(document).ready(function() {
                     dataType: 'json'
                 })
                 .done(function(data) {
+                    console.log(data);
                     giphyGetter.displayCards(data);
                 })
                 .fail(function() {
@@ -33,8 +34,8 @@ $(document).ready(function() {
          * "constructs" the card class
          *  which each img will be displayed
          */
-        buildCard: function(url, posted, rating, id) {
-            return $("<div class='card' style='width: 20rem;'><img id='imgMatch' class='card-img-top img-fluid' data-id='" + id + "' src='" + url + "' alt='giphy-image'><div class='card-body'><p class='card-text'>" + "Posted on <i>" + posted + "</i><hr> Rating: <b>" + rating.toUpperCase() + "</b></p></div></div>");
+        buildCard: function(url, posted, rating, id, lightbox) {
+            return $("<div class='card' style='width: 20rem;'><img id='imgMatch' class='card-img-top img-fluid' data-id='" + id + "' src='" + url + "' alt='giphy-image'><div class='card-body'><p class='card-text'>" + "Posted on <i>" + posted + "</i><hr> Rating: <b>" + rating.toUpperCase() + "</b></p><a href='" + lightbox + "' data-lightbox='giphy'>VIEW</a></div></div>");
         },
 
         /**
@@ -47,7 +48,8 @@ $(document).ready(function() {
                 var urL = gifArray.data[i].images.downsized_still.url;
                 var opUpload = gifArray.data[i].import_datetime;
                 var rating = gifArray.data[i].rating;
-                $("#card-holder").append(giphyGetter.buildCard(urL, opUpload, rating, i));
+                var lightbox = gifArray.data[i].images.original.url;
+                $("#card-holder").append(giphyGetter.buildCard(urL, opUpload, rating, i, lightbox));
             }
         },
 
