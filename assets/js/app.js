@@ -50,7 +50,8 @@ $(document).ready(function() {
                 var opUpload = gifArray.data[i].import_datetime;
                 var rating = gifArray.data[i].rating;
                 var lightbox = gifArray.data[i].images.original.url;
-                $("#card-holder").prepend(giphyGetter.buildCard(urL, opUpload, rating, i, lightbox));
+                var card = giphyGetter.buildCard(urL, opUpload, rating, i, lightbox);
+                $("#card-holder").prepend(card);
             }
         },
 
@@ -75,7 +76,20 @@ $(document).ready(function() {
      * ignores pre-existing input
      */
     $("#add_gif").on('click', function(e) {
+        newGiphyReq();
+    });
+
+    /**
+     * adds ability to
+     * submit giphy requests
+     * with the enter key
+     */
+    $("form").submit(function(e) {
         e.preventDefault();
+        newGiphyReq();
+    });
+
+    function newGiphyReq() {
         var userInputData = $("input[type=text][name=input_gif]").val().trim().toLowerCase();
         if (userInputData == "") {
             $("input[type=text][name=input_gif]").effect("pulsate", "fast");
@@ -87,8 +101,7 @@ $(document).ready(function() {
         } else {
             $("input[type=text][name=input_gif]").effect("pulsate", "fast");
         }
-    });
-
+    }
     /**
      * changes api call
      * verifies current image
