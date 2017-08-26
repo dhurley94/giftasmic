@@ -28,7 +28,7 @@ $(document).ready(function() {
             // TODO add a loading animation
         },
 
-        /** 
+        /**
          * function that
          * "constructs" the card class
          *  which each img will be displayed
@@ -53,7 +53,7 @@ $(document).ready(function() {
 
         /**
          * adds nav elem based on
-         * contents of array userInput 
+         * contents of array userInput
          */
         buildNav: function() {
             $("#addMore").empty();
@@ -88,7 +88,7 @@ $(document).ready(function() {
 
     /**
      * changes api call
-     * verifies current image 
+     * verifies current image
      * are not being recalled
      * reduces network traffic
      */
@@ -103,7 +103,7 @@ $(document).ready(function() {
 
     /**
      * changes from stationary img
-     * to gifs using 
+     * to gifs using
      * split, splice, join
      * rather than api
      */
