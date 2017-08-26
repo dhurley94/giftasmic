@@ -2,16 +2,21 @@ $(document).ready(function() {
 
     var giphyGetter = {
 
-        userInput: ["kittens", "puppies", "giphy", "anime", "propane"], // starter topics
+        userInput: ["kittens", "puppies", "anime", "propane", "accessories"], // starter topics
         apikey: "2773155dc8d74104b585bac0e616ff5a", // apikey
+        gifOffset: 0,
         selection: "",
 
+        /**
+         * builds query based on user input
+         * and other variables pending their
+         * status
+         */
         gifQuery: function(input) {
             $("#card-holder").empty();
-
             var params = {
                 userAdd: input,
-                url: "https://api.giphy.com/v1/gifs/search?q=" + input + "&api_key=" + giphyGetter.apikey + "&limit=10&offset=0&rating=PG&lang=en"
+                url: "https://api.giphy.com/v1/gifs/search?q=" + input + "&api_key=" + giphyGetter.apikey + "&limit=10&offset=" + giphyGetter.gifOffset + "&rating=PG&lang=en"
             };
 
             $.ajax({
@@ -20,13 +25,8 @@ $(document).ready(function() {
                     dataType: 'json'
                 })
                 .done(function(data) {
-                    console.log(data);
                     giphyGetter.displayCards(data);
-                })
-                .fail(function() {
-                    $("card-holder").append("<div class='danger'>Failed to get data from Giphy.");
                 });
-            // TODO add a loading animation
         },
 
         /**
@@ -35,12 +35,13 @@ $(document).ready(function() {
          *  which each img will be displayed
          */
         buildCard: function(url, posted, rating, id, lightbox) {
-            return $("<div class='card' style='width: 20rem;'><img id='imgMatch' class='card-img-top img-fluid' data-id='" + id + "' src='" + url + "' alt='giphy-image'><div class='card-body'><p class='card-text'>" + "Posted on <i>" + posted + "</i><hr> Rating: <b>" + rating.toUpperCase() + "</b></p><a href='" + lightbox + "' data-lightbox='giphy'>VIEW</a></div></div>");
+            return $("<div class='card' style='width: 20rem;'><img id='imgMatch' class='card-img-top img-fluid' data-id='" + id + "' src='" + url + "' alt='giphy-image'><div class='card-body'><p class='card-text'>" + "Posted on <i>" + posted + "</i><hr> Rating: <b>" + rating.toUpperCase() + "</b><hr></p><a href='" + lightbox + "' data-lightbox='giphy'>ORIGINAL</a></div></div>");
         },
 
         /**
          * iterates over api data
-         * adding each image to the DOM
+         * passes data to buildCard()
+         * prepends it to the DOM
          */
         displayCards: function(gifArray) {
             $("#card-holder").empty();
@@ -49,7 +50,7 @@ $(document).ready(function() {
                 var opUpload = gifArray.data[i].import_datetime;
                 var rating = gifArray.data[i].rating;
                 var lightbox = gifArray.data[i].images.original.url;
-                $("#card-holder").append(giphyGetter.buildCard(urL, opUpload, rating, i, lightbox));
+                $("#card-holder").prepend(giphyGetter.buildCard(urL, opUpload, rating, i, lightbox));
             }
         },
 
@@ -101,6 +102,10 @@ $(document).ready(function() {
             $("#card-holder").empty();
             giphyGetter.gifQuery(selection);
         }
+        // increment offset
+        // this "randomizes"
+        // which gifs are loaded
+        giphyGetter.gifOffset++;
     });
 
     /**
