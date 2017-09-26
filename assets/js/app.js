@@ -16,7 +16,7 @@ $(document).ready(function() {
             $("#card-holder").empty();
             var params = {
                 userAdd: input,
-                url: "https://api.giphy.com/v1/gifs/search?q=" + input + "&api_key=" + giphyGetter.apikey + "&limit=10&offset=" + giphyGetter.gifOffset + "&rating=PG&lang=en"
+                url: "https://api.giphy.com/v1/gifs/search?q=" + input + "&api_key=" + giphyGetter.apikey + "&limit=10&offset=" + giphyGetter.gifOffset + "&rating=R&lang=en"
             };
 
             $.ajax({
